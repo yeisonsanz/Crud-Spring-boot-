@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { Contact } from '../model/contact.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -8,23 +9,23 @@ export class ContactServiceService {
 
   private http = inject(HttpClient)
 
-  list(){
-    return this.http.get('http://localhost:8080/api/contacts')
+  public list(){
+    return this.http.get<Contact[]>('http://localhost:8080/api/contacts')
   }
 
-  get(id:number){
-    return this.http.get(`http://localhost:8080/api/contacts/${id}`)
+  public get(id:number){
+    return this.http.get<Contact>(`http://localhost:8080/api/contacts/${id}`)
   }
 
-  create(contact: any){
-    return this.http.post('http://localhost:8080/api/contacts', contact)
+  public create(contact: Contact){
+    return this.http.post<Contact>('http://localhost:8080/api/contacts', contact)
   }
 
-  update(id: number, contact: any){
-    return this.http.put(`http://localhost:8080/api/contacts/${id}`, contact)
+  public update(id: number, contact: Contact){
+    return this.http.put<Contact>(`http://localhost:8080/api/contacts/${id}`, contact)
   }
 
-  delete(id: number){
+  public delete(id: number){
     return this.http.delete(`http://localhost:8080/api/contacts/${id}`)
   }
 

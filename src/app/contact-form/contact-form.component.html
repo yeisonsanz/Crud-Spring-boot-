@@ -1,0 +1,35 @@
+<h2 class="mb-5">
+    {{modoEdicion ? 'Editar contacto 🎇' : 'Nuevo contacto 🤩'}}
+</h2>
+
+<div class="row row-cols-3 justify-content-center">
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+
+        <div class="mb-3">
+            <label for="name">Nombre</label>
+            <input id="name" type="text" placeholder="Nombre" class="form-control" formControlName="nombre">
+        </div>
+    
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
+        </div>
+    
+        <div class="text-end">
+            <button type="button" class="btn btn-light" routerLink="/">
+                Cancelar
+            </button>
+
+            <button class= "btn btn-primary ms-2">
+                <ng-container *ngIf="contact; else crearContacto">
+                    Actualizar
+                </ng-container>
+                <ng-template #crearContacto>
+                    Crear
+                </ng-template>
+                Contacto
+            </button>
+        </div>
+    </form>
+</div>
